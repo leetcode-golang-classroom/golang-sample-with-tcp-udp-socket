@@ -22,6 +22,7 @@ func main() {
 		conn, err := listener.Accept()
 		if err != nil {
 			ulog.ErrorContext(ctx, "failed to accept request", slog.Any("err", err))
+			continue
 		}
 
 		// Handle the connection
@@ -107,3 +108,5 @@ func main() {
 	}
 }
 ```
+
+## 以上是 針對 golang 使用 socket 的範例

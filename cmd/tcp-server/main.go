@@ -24,6 +24,7 @@ func main() {
 		ulog.ErrorContext(ctx, "failed to listen", slog.Any("addr", listener.Addr().String()))
 		os.Exit(1)
 	}
+	ulog.InfoContext(ctx, "server start", slog.String("port", config.AppConfig.Port))
 	defer listener.Close()
 
 	for {
@@ -31,6 +32,7 @@ func main() {
 		conn, err := listener.Accept()
 		if err != nil {
 			ulog.ErrorContext(ctx, "failed to accept request", slog.Any("err", err))
+			continue
 		}
 
 		// Handle the connection
